@@ -1,0 +1,30 @@
+      *=====================================================================*
+      *  Math Service Program - Prototype                                   *
+      *=====================================================================*
+      *  Initial Design                                                     *
+      *         - define prototype for 'addInt'                             *
+      *         - define prototype for 'subInt'                             *
+      ***********************************************************************
+      *  Change # 1                                                         *
+      *         - define prototype for 'mulInt'                             *
+      ***********************************************************************
+      *  Change # 2                                                         *
+      *         - define prototype for 'divInt'                             *
+      ***********************************************************************
+
+     D addInt          pr            15s 0 extproc('addInt')
+     D num1                          15s 0 CONST
+     D num2                          15s 0 CONST
+
+     D subInt          pr            15s 0 extproc('subInt')
+     D num1                          15s 0 CONST
+     D num2                          15s 0 CONST
+
+     D mulInt          pr            15s 0 extproc('mulInt')
+     D num1                          15s 0 CONST
+     D num2                          15s 0 CONST
+
+     D divInt          pr            15s 0 extproc('divInt')
+     D num1                          15s 0 CONST
+     D num2                          15s 0 CONST
+
