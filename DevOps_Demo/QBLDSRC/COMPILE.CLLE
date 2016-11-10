@@ -1,6 +1,13 @@
 PGM
-DCL &FAILED TYPE(*DEC) LEN(10 0) VALUE(0)
-DCL &FAILEDSTR TYPE(*CHAR) LEN(10)
+             DCL        &FAILED TYPE(*DEC) LEN(10 0) VALUE(0)
+             DCL        &FAILEDSTR TYPE(*CHAR) LEN(10)
+             DCL        &PPGM TYPE(*CHAR) LEN(10)
+             DCL        &PJOB TYPE(*CHAR) LEN(10)
+             DCL        &PUSR TYPE(*CHAR) LEN(10)
+             DCL        &PNBR TYPE(*CHAR) LEN(6)
+             DCL        &EXMSG TYPE(*DEC) LEN(5 0)
+             DCL        &RTNCD TYPE(*DEC) LEN(1 0)
+
 
 /* Create RPG Module */
 CRTRPGMOD  MODULE(NES.DEV/S_MATH) SRCFILE(NES.DEV/QRPGLESRC) REPLACE(*YES) +
@@ -26,6 +33,18 @@ MONMSG     MSGID(CPF0000) EXEC(GOTO EXIT)
 
 /* Run Unit Test */
 RUCALLTST  TSTPGM(S_TMATH) DETAIL(*ALL)
+
+RCVMSG     MSGTYPE(*EXCP) MSGLEN(&EXMSG)
+IF         COND(&EXMSG > 0 ) THEN(GOTO EXIT)
+
+CHGVAR     VAR(&RTNCD) VALUE(0)
+RTVJOBA    JOB(&PJOB) USER(&PUSR) NBR(&PNBR)
+
+RMVLNK     OBJLNK('/home/msnes/devops_poc/log.file')
+MONMSG     MSGID(CPF0000)
+CPYSPLF    FILE(RPGUNIT) TOFILE(*TOSTMF) JOB(&PNBR/&PUSR/&PJOB) SPLNBR(*LAST) +
+             JOBSYSNAME(*CURRENT) CRTDATE(*LAST) MBROPT(*REPLACE) +
+             TOSTMF('/home/msnes/devops_poc/log.file')
 
 /* Trigger Jenkins Build */
 STRPCO     PCTA(*NO)
