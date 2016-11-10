@@ -23,7 +23,7 @@
 
      H NoMain Option(*SrcStmt)
 
-      /copy QCPYSRC,P_MATH                        MATH Copybook
+      /copy NES.DEV/QCPYSRC,P_MATH                        MATH Copybook
 
       // ============================================================
       //  addInt : add 2 integer numbers

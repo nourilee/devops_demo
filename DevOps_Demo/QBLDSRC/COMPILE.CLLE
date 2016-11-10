@@ -27,4 +27,12 @@ MONMSG     MSGID(CPF0000) EXEC(GOTO EXIT)
 /* Run Unit Test */
 RUCALLTST  TSTPGM(S_TMATH) DETAIL(*ALL)
 
+/* Trigger Jenkins Build */
+STRPCO     PCTA(*NO)
+MONMSG     MSGID(CP00000 MCH0000 IWS0000)
+STRPCCMD   PCCMD('START +
+             http://localhost:8080/job/Demo_SourcePromote/build?token=dev0ps')
+MONMSG     MSGID(CPF0000)
+DSPJOBLOG  OUTPUT(*PRINT)
+
  EXIT: ENDPGM
