@@ -26,7 +26,7 @@
       /copy NES.DEV/QCPYSRC,P_MATH                        MATH Copybook
 
       // ============================================================
-      //  addInt : add 2 integer numbers
+      //  addInt : add 2 integer numbers        -test
       // ============================================================
      P addInt          b                   export
      D addInt          pi            15s 0
